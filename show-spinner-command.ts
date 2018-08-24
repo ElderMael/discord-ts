@@ -14,7 +14,7 @@ commander
         console.log(chalk.yellow("Sending message to discord"));
     });
 
-if(!process.argv.slice(2).length/* || !/[arudl]/.test(process.argv.slice(2))*/) {
+if(!process.argv.slice(2).length) {
     commander.outputHelp()
     process.exit()
 }
