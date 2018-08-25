@@ -1,21 +1,12 @@
 import chalk from "chalk";
 import * as commander from "commander";
-import {Client as DiscordClient} from "discord.js";
+import {Client as DiscordClient, Message} from "discord.js";
 import {config as configDotEnv} from "dotenv";
-import axios from "axios";
 import * as _ from "lodash";
+import {postApiNewsUrl} from "./postApiNewsUrl";
 
 // tslint:disable-next-line
 const version = require("../../package.json").version;
-
-interface Article {
-    url: string;
-}
-
-interface ApiNewsResponse {
-    status: string;
-    articles: Article;
-}
 
 configDotEnv();
 
@@ -33,20 +24,17 @@ commander.on("command:send", (message: string) => {
         console.log("I am ready!");
     });
 
-    client.on("message", (message) => {
-        if (message.content === "!ping") {
-            message.channel.send("pong");
+    client.on("message", (channelMessage: Message) => {
+        const messageContent = channelMessage.content;
+
+        if (messageContent === "!ping") {
+            channelMessage.channel.send("pong");
         }
 
-        if (message.content === "!polygon") {
-            const polygonApiKey = process.env.POLYGON_API_KEY;
-            const polygonUrl = `https://newsapi.org/v2/top-headlines?sources=polygon&apiKey=${polygonApiKey}`;
-            axios.get(polygonUrl).then((response) => {
-                const article: Article = _.head(response.data.articles) as Article;
-                message.channel.send(article.url);
-            }).catch((error) => {
-                console.log(chalk.red(`Error retrieving polygon news, ${error}`));
-            });
+        if (_.includes(["!polygon", "!ars-technica"], messageContent)) {
+
+            const website = messageContent.substring(1);
+            postApiNewsUrl(website, channelMessage);
         }
     });
 
