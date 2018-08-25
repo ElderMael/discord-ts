@@ -15,3 +15,7 @@ commander.on('command:send', (message: string) => {
 });
 
 commander.parse(process.argv);
+
+export default {
+    test: true
+};
