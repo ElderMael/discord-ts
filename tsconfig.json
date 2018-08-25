@@ -1,19 +1,22 @@
 {
-"compilerOptions": {
- "target": "es5",
- "lib": [
-   "es2017","es2015","dom","es6"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es6",
+    "declaration": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "./dist",
+    "rootDir": "src/",
+    "preserveConstEnums": true,
+    "removeComments": true
+  },
+  "include": [
+    "src/**/*"
   ],
- "module": "commonjs",
- "outDir": "./",
- "sourceMap": false,
- "strict": true
-},
-"include": [
-  "**.ts"
- ],
-"exclude": [
-  "node_modules",
-  "firefunctions"
- ]
+  "exclude": [
+    "node_modules",
+    "!node_modules/@types",
+    "test/**/*-spec.ts"
+  ]
 }
