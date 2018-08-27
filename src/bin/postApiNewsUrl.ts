@@ -1,9 +1,9 @@
-import {Message} from "./message";
 import axios, {AxiosResponse} from "axios";
+import chalk from "chalk";
+import {Message} from "discord.js";
+import * as _ from "lodash";
 import {ApiNewsResponse} from "./apiNewsResponse";
 import {Article} from "./article";
-import * as _ from "lodash";
-import chalk from "chalk";
 
 export function postApiNewsUrl(website: string, channelMessage: Message): void {
     const polygonApiKey = process.env.POLYGON_API_KEY;

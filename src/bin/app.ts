@@ -38,7 +38,9 @@ commander.on("command:send", (message: string) => {
         }
     });
 
-    client.login(process.env.BOT_TOKEN);
+    client.login(process.env.BOT_TOKEN).then((result) => {
+        console.log(result);
+    });
 
 });
 
