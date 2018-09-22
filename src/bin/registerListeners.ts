@@ -24,8 +24,6 @@ export function registerListenersTo(client: DiscordClient) {
 
             const searchTerm: string = encodeURIComponent(messageContent.substring(6));
 
-            console.log(searchTerm);
-
             const memeGeneratorUrl = "http://version1.api.memegenerator.net"
             + `//Instances_Search?q=${searchTerm}&pageIndex=0&pageSize=10&apiKey=${memeGeneratorApiKey}`;
 
