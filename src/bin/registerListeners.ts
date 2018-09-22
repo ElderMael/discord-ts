@@ -31,7 +31,7 @@ export function registerListenersTo(client: DiscordClient) {
                 const imageUrl = _.sample(response.data.result).instanceImageUrl;
                 channelMessage.channel.send(imageUrl);
             }).catch((error) => {
-                console.log(chalk.red(`Error retrieving polygon news, ${error}`));
+                console.log(chalk.red(`Error retrieving meme: ${error}`));
             });
 
         }
