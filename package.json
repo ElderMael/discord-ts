@@ -9,7 +9,8 @@
     "clean": "del dist",
     "build": "npm run clean && tsc --pretty",
     "test": "npm run clean && npm run build && jasmine --config=jasmine.json --random=true",
-    "pack": "npm run test && del dist/**/*.spec.*"
+    "pack": "npm run test && del dist/**/*.spec.*",
+    "start": "node dist/bin/app.js"
   },
   "author": {
     "name": "ElderMael",
