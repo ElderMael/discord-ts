@@ -14,7 +14,7 @@ commander.version(version);
 
 commander.command("send", "Send message to Discord");
 
-commander.on("command:send", (message: string) => {
+const sendMessage = (message: string) => {
 
     console.log(chalk.yellow(`Sending '${message}'`));
 
@@ -42,6 +42,12 @@ commander.on("command:send", (message: string) => {
         console.log(result);
     });
 
-});
+};
 
-commander.parse(process.argv);
+commander.on("command:send", sendMessage);
+
+if(process.argv.length === 2) {
+    sendMessage("");
+} else {
+    commander.parse(process.argv);
+}

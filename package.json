@@ -4,6 +4,7 @@
   "description": "",
   "repository": "",
   "license": "GPLv3",
+  "entrypoint": "bin/app.js",
   "scripts": {
     "clean": "del dist",
     "build": "npm run clean && tsc --pretty",
