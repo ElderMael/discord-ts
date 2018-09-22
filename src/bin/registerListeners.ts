@@ -30,7 +30,7 @@ export function registerListenersTo(client: DiscordClient) {
             + `//Instances_Search?q=${searchTerm}&pageIndex=0&pageSize=10&apiKey=${memeGeneratorApiKey}`;
 
             axios.get(memeGeneratorUrl).then((response: AxiosResponse<any>) => {
-                const imageUrl = _.sample(response.data.result[0]).instanceImageUrl;
+                const imageUrl = _.sample(response.data.result).instanceImageUrl;
                 channelMessage.channel.send(imageUrl);
             }).catch((error) => {
                 console.log(chalk.red(`Error retrieving polygon news, ${error}`));
