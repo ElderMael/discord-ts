@@ -1,5 +1,5 @@
 import axios, {AxiosResponse} from "axios";
-import {Message} from "discord.js";
+import {Attachment, Message} from "discord.js";
 import * as _ from "lodash";
 import MessageListener from "./MessageListener";
 
@@ -20,6 +20,9 @@ export class MemeGeneratorMessageListener implements MessageListener {
 
         return axios.get(memeGeneratorUrl).then((response: AxiosResponse<any>) => {
             const imageUrl = _.sample(response.data.result).instanceImageUrl;
+
+            const imageAttachment = new Attachment(imageUrl);
+
             return msg.channel.send(imageUrl);
         });
     }
