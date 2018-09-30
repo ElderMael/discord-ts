@@ -11,7 +11,7 @@ export function registerListenersTo(client: DiscordClient) {
                 listener.process(message)
                     .then(console.info)
                     .catch((error) => {
-                        console.error(`Error while processing message ${message.content}`, error);
+                        console.error(`Error while processing message '${message.content}':`, error);
                     });
             }
 
