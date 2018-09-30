@@ -4,14 +4,17 @@ import {Message} from "discord.js";
 import {Client as DiscordClient} from "discord.js";
 import * as _ from "lodash";
 import {postApiNewsUrl} from "./postApiNewsUrl";
+import {listeners} from "../MessageListener";
 
 export function registerListenersTo(client: DiscordClient) {
     client.on("message", (channelMessage: Message) => {
         const messageContent = channelMessage.content;
 
-        if (messageContent === "!ping") {
-            channelMessage.channel.send("pong");
-        }
+        listeners.forEach((listener) => {
+            if (listener.canProcess(channelMessage)) {
+                listener.process(channelMessage);
+            }
+        });
 
         if (_.includes(["!polygon", "!ars-technica"], messageContent)) {
 
@@ -25,7 +28,7 @@ export function registerListenersTo(client: DiscordClient) {
             const searchTerm: string = encodeURIComponent(messageContent.substring(6));
 
             const memeGeneratorUrl = "http://version1.api.memegenerator.net"
-            + `//Instances_Search?q=${searchTerm}&pageIndex=0&pageSize=10&apiKey=${memeGeneratorApiKey}`;
+                + `//Instances_Search?q=${searchTerm}&pageIndex=0&pageSize=10&apiKey=${memeGeneratorApiKey}`;
 
             axios.get(memeGeneratorUrl).then((response: AxiosResponse<any>) => {
                 const imageUrl = _.sample(response.data.result).instanceImageUrl;
