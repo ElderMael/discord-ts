@@ -3,24 +3,20 @@ import chalk from "chalk";
 import {Message} from "discord.js";
 import {Client as DiscordClient} from "discord.js";
 import * as _ from "lodash";
-import {postApiNewsUrl} from "./postApiNewsUrl";
 import {listeners} from "../MessageListener";
 
 export function registerListenersTo(client: DiscordClient) {
     client.on("message", (channelMessage: Message) => {
+
         const messageContent = channelMessage.content;
 
         listeners.forEach((listener) => {
             if (listener.canProcess(channelMessage)) {
-                listener.process(channelMessage);
+                listener.process(channelMessage)
+                    .then(console.info)
+                    .catch(console.error);
             }
         });
-
-        if (_.includes(["!polygon", "!ars-technica"], messageContent)) {
-
-            const website = messageContent.substring(1);
-            postApiNewsUrl(website, channelMessage);
-        }
 
         if (messageContent.startsWith("!meme")) {
             const memeGeneratorApiKey = process.env.MEME_GENERATOR_API_KEY;
