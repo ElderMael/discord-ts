@@ -1,5 +1,6 @@
 import {Message} from "discord.js";
 import {ApiNewsMessageListener} from "./ApiNewsMessageListener";
+import {MemeGeneratorMessageListener} from "./MemeGeneratorMessageListener";
 import {PingMessageListener} from "./PingMessageListener";
 
 interface MessageListener {
@@ -14,6 +15,7 @@ export default MessageListener;
 const listeners = [
     new PingMessageListener(),
     new ApiNewsMessageListener(),
+    new MemeGeneratorMessageListener(),
 ] as MessageListener[];
 
 export {listeners};
