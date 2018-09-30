@@ -4,13 +4,15 @@ import {listeners} from "../MessageListener";
 
 export function registerListenersTo(client: DiscordClient) {
 
-    client.on("message", (channelMessage: Message) => {
+    client.on("message", (message: Message) => {
 
         listeners.forEach((listener) => {
-            if (listener.canProcess(channelMessage)) {
-                listener.process(channelMessage)
+            if (listener.canProcess(message)) {
+                listener.process(message)
                     .then(console.info)
-                    .catch(console.error);
+                    .catch((error) => {
+                        console.error(`Error while processing message ${message.content}`, error);
+                    });
             }
 
         });
