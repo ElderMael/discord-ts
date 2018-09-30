@@ -23,7 +23,7 @@ export class MemeGeneratorMessageListener implements MessageListener {
 
             const imageAttachment = new Attachment(imageUrl);
 
-            return msg.channel.send(imageUrl);
+            return msg.channel.send(imageAttachment);
         });
     }
 
