@@ -3,7 +3,7 @@ import {Attachment, Message} from "discord.js";
 import * as _ from "lodash";
 import MessageListener from "./MessageListener";
 
-const memeGeneratorApiKey = process.env.MEME_GENERATOR_API_KEY;
+const memeGeneratorApiKey = process.env.MEME_GENERATOR_API_KEY.trim();
 
 export class MemeGeneratorMessageListener implements MessageListener {
 
