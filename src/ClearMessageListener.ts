@@ -4,7 +4,7 @@ import MessageListener from "./MessageListener";
 export class ClearMessageListener implements MessageListener {
 
     public canProcess(msg: Message): boolean {
-        return msg.content === "!limpia";
+        return msg.content.startsWith("!limpia");
     }
 
     public process(msg: Message): Promise<any> {
