@@ -19,11 +19,9 @@ export class MemeGeneratorMessageListener implements MessageListener {
             + `//Instances_Search?q=${searchTerm}&pageIndex=0&pageSize=10&apiKey=${memeGeneratorApiKey}`;
 
         return axios.get(memeGeneratorUrl).then((response: AxiosResponse<any>) => {
-            const results = response.data.result;
+            const results = response.data.result as any[];
 
-            console.log('Memes retrieved:', results);
-
-            if (results.isEmpty()) {
+            if (!results.length) {
                 return msg.channel.send(
                     new Attachment("http://www.sco.tt/.a/6a00d8357e4fe369e201b7c8def70d970b-800wi"),
                 );
