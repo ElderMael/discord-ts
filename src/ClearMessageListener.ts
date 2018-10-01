@@ -22,8 +22,10 @@ export class ClearMessageListener implements MessageListener {
                 messages on channel ${msg.channel.toString()}`));
         }
 
-        console.log(`User ${msg.author.username} (${guildMember.roles.map((role) => role.name)}) \
-            removed ${howMany} messages!`);
+        const roles = guildMember.roles.map((role) => role.name);
+
+        console.log(roles);
+        console.log(`User ${msg.author.username} (${roles}) removed ${howMany} messages!`);
 
         return msg.channel.fetchMessages({
             limit: howMany,
