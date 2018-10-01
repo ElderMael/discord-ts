@@ -11,7 +11,10 @@ export class ClearMessageListener implements MessageListener {
 
         const howMany = parseInt(msg.content.substring(6), 10) || 5;
 
-        if (!msg.guild.member(msg.author).hasPermission("clear")) {
+        if (
+            !msg.guild.member(msg.author).hasPermission("ADMINISTRATOR") ||
+            !msg.guild.member(msg.author).hasPermission("MANAGE_MESSAGES")
+        ) {
             msg.author.send("clearing messages is prohibited for you!");
             return Promise.reject(new Error(`User '${msg.author.username}' attempted to clear \
                 messages on channel ${msg.channel.toString()}`));
