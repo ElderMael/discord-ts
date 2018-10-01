@@ -15,9 +15,7 @@ export class ClearMessageListener implements MessageListener {
 
         const guildMember = msg.guild.member(msg.author);
 
-        console.info(`Guild Member \
-        '${msg.author.username}' (${ guildMember.roles.map((role) => role.name) }) \
-         tries to delete ${howMany} messages.`);
+        console.info(`Guild Member '${msg.author.username}' tries to delete ${howMany} messages.`);
 
         if (!guildMember.hasPermission("ADMINISTRATOR")) {
 
