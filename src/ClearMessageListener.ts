@@ -4,16 +4,18 @@ import MessageListener from "./MessageListener";
 export class ClearMessageListener implements MessageListener {
 
     public canProcess(msg: Message): boolean {
-        return msg.content === "!clear";
+        return msg.content === "!limpia";
     }
 
     public process(msg: Message): Promise<any> {
 
         const howMany = parseInt(msg.content.substring(6), 10) || 5;
 
+        console.info("Borrando mensajes", howMany);
+
         const guildMember = msg.guild.member(msg.author);
 
-        console.info(`Guild Member '${guildMember.displayName}' tries to delete ${howMany} messages.`);
+        console.info(`Guild Member '${msg.author.username}' tries to delete ${howMany} messages.`);
 
         if (!guildMember.hasPermission("ADMINISTRATOR")) {
 
