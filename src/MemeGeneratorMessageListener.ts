@@ -21,6 +21,8 @@ export class MemeGeneratorMessageListener implements MessageListener {
         return axios.get(memeGeneratorUrl).then((response: AxiosResponse<any>) => {
             const results = response.data.result;
 
+            console.log('Memes retrieved:', results);
+
             if (results.isEmpty()) {
                 return msg.channel.send(
                     new Attachment("http://www.sco.tt/.a/6a00d8357e4fe369e201b7c8def70d970b-800wi"),
