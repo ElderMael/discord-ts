@@ -22,16 +22,17 @@ export class ClearMessageListener implements MessageListener {
                 messages on channel ${msg.channel.toString()}`));
         }
 
-        const roles = guildMember.roles.map((role) => role.name);
-
-        console.info(roles);
-        console.info(`User ${msg.author.username} (${roles}) removed ${howMany} messages!`);
-
         return msg.channel.fetchMessages({
             limit: howMany,
         }).then((messages: Collection<Snowflake, Message>) => {
             return messages.map((message) => message.delete());
+        }).then((deletedMessages) => {
+            const roles = guildMember.roles.map((role) => role.name);
+            console.info(roles);
+            console.info(`User ${msg.author.username} (${roles}) removed ${howMany} messages!`);
+            return deletedMessages;
         });
+
     }
 
 }
