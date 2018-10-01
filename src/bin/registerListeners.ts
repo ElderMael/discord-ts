@@ -15,7 +15,6 @@ export function registerListenersTo(client: DiscordClient) {
                         message.channel.send("Ups! Error 😞");
                     });
             }
-
         });
 
     });

@@ -26,6 +26,7 @@ export class MemeGeneratorMessageListener implements MessageListener {
             return msg.channel.send(imageAttachment);
         }).catch((error) => {
             console.log(`Error while retrieving meme from url '${memeGeneratorUrl}'`, error);
+            throw error;
         });
     }
 
