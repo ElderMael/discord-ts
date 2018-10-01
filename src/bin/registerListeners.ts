@@ -12,6 +12,7 @@ export function registerListenersTo(client: DiscordClient) {
                     .then(console.info)
                     .catch((error) => {
                         console.error(`Error while processing message '${message.content}':`, error);
+                        message.channel.send("Ups! Error 😞");
                     });
             }
 
