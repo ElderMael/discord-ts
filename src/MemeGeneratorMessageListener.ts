@@ -1,5 +1,5 @@
 import axios, {AxiosResponse} from "axios";
-import {Attachment, Message} from "discord.js";
+import {Message} from "discord.js";
 import * as _ from "lodash";
 import MessageListener from "./MessageListener";
 
@@ -23,15 +23,13 @@ export class MemeGeneratorMessageListener implements MessageListener {
 
             if (!results.length) {
                 return msg.channel.send(
-                    new Attachment("http://www.sco.tt/.a/6a00d8357e4fe369e201b7c8def70d970b-800wi"),
+                    "http://www.sco.tt/.a/6a00d8357e4fe369e201b7c8def70d970b-800wi",
                 );
             }
 
             const imageUrl = _.sample(results).instanceImageUrl;
 
-            const imageAttachment = new Attachment(imageUrl);
-
-            return msg.channel.send(imageAttachment);
+            return msg.channel.send(imageUrl);
         }).catch((error) => {
             console.log(`Error while retrieving meme from url '${memeGeneratorUrl}'`, error);
             throw error;
