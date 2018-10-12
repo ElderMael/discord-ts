@@ -1,8 +1,8 @@
 import axios, {AxiosResponse} from "axios";
 import {Message} from "discord.js";
 import * as _ from "lodash";
-import {ApiNewsResponse} from "./bin/apiNewsResponse";
-import {Article} from "./bin/article";
+import {ApiNewsResponse} from "../apis/news/apiNewsResponse";
+import {Article} from "../bin/article";
 import MessageListener from "./MessageListener";
 
 const polygonApiKey = process.env.POLYGON_API_KEY;

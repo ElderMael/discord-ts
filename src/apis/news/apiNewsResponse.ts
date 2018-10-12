@@ -1,4 +1,4 @@
-import {Article} from "./article";
+import {Article} from "../../bin/article";
 
 export interface ApiNewsResponse {
     status: string;

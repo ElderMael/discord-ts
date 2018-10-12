@@ -3,6 +3,7 @@ import {ApiNewsMessageListener} from "./ApiNewsMessageListener";
 import {MemeGeneratorMessageListener} from "./MemeGeneratorMessageListener";
 import {PingMessageListener} from "./PingMessageListener";
 import {ClearMessageListener} from "./ClearMessageListener";
+import {AddRoleMessageListener} from "./AddRoleMessageListener";
 
 interface MessageListener {
 
@@ -18,6 +19,7 @@ const listeners = [
     new ApiNewsMessageListener(),
     new MemeGeneratorMessageListener(),
     new ClearMessageListener(),
+    new AddRoleMessageListener(),
 ] as MessageListener[];
 
 export {listeners};
