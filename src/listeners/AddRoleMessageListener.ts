@@ -25,9 +25,14 @@ export class AddRoleMessageListener implements MessageListener {
         }
 
 
-        let guildMember = msg.guild.members.find('nickname', user);
+        let guildMember = msg.mentions.users.first();
 
-        return guildMember
+        if (!guildMember) {
+            return msg.channel.send(`User does not exist ${user}`);
+        }
+
+        return msg.guild
+            .member(guildMember)
             .addRole(guildRole)
             .then(() => {
                 return msg.channel.send(`Added role ${role} to user ${user}`);
