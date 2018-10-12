@@ -24,8 +24,10 @@ export class AddRoleMessageListener implements MessageListener {
             return msg.channel.send(`Role not found ${role}, valid roles are: ${roles}`);
         }
 
-        return msg.guild
-            .member(user)
+
+        let guildMember = msg.guild.members.find('nickname', user);
+
+        return guildMember
             .addRole(guildRole)
             .then(() => {
                 return msg.channel.send(`Added role ${role} to user ${user}`);
