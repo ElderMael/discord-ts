@@ -14,7 +14,7 @@ export class AddRoleMessageListener implements MessageListener {
             return Promise.reject(`Invalid command: ${msg.content} `);
         }
 
-        const guildRole = msg.guild.roles.find('name', role);
+        const guildRole = msg.guild.roles.filter(r => r.name.includes(role));
 
 
         if (!guildRole) {
