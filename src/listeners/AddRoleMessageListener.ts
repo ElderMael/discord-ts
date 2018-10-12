@@ -25,18 +25,25 @@ export class AddRoleMessageListener implements MessageListener {
         }
 
 
-        let guildMember = msg.mentions.users.first();
+        let guildUser = msg.mentions.users.first();
 
-        if (!guildMember) {
+        if (!guildUser) {
             return msg.channel.send(`User does not exist ${user}`);
         }
 
-        return msg.guild
-            .member(guildMember)
+        let guildMember = msg.guild
+            .member(guildUser);
+
+        if (!guildMember.hasPermission("ADMINISTRATOR")) {
+            return msg.channel.send(`You do not have rights for this!`);
+        }
+
+        return guildMember
             .addRole(guildRole)
             .then(() => {
                 return msg.channel.send(`Added role ${role} to user ${user}`);
             }).catch(error => {
+                console.log(error);
                 return msg.channel.send(`Error adding role ${role} to user ${user}`)
             });
     }
