@@ -10,7 +10,8 @@
     "build": "npm run clean && tsc --pretty",
     "test": "npm run clean && npm run build && jasmine --config=jasmine.json --random=true",
     "pack": "npm run test && del dist/**/*.spec.*",
-    "start": "node dist/bin/app.js"
+    "start": "node dist/bin/app.js",
+    "debug": "node --inspect --require dotenv/config dist/bin/app.js"
   },
   "author": {
     "name": "ElderMael",

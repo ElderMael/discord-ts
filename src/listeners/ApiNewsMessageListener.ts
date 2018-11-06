@@ -5,9 +5,13 @@ import {ApiNewsResponse} from "../apis/news/apiNewsResponse";
 import {Article} from "../bin/article";
 import MessageListener from "./MessageListener";
 
-const polygonApiKey = process.env.POLYGON_API_KEY;
-
 export class ApiNewsMessageListener implements MessageListener {
+
+    private apiKey: string;
+
+    constructor(apiKey: string) {
+        this.apiKey = apiKey;
+    }
 
     public canProcess(msg: Message): boolean {
         return _.includes(["!polygon", "!ars-technica"], msg.content);
@@ -16,7 +20,7 @@ export class ApiNewsMessageListener implements MessageListener {
     public process(msg: Message): Promise<any> {
         const website = msg.content.substring(1);
 
-        const apiNewsUrl = `https://newsapi.org/v2/top-headlines?sources=${website}&apiKey=${polygonApiKey}`;
+        const apiNewsUrl = `https://newsapi.org/v2/top-headlines?sources=${website}&apiKey=${this.apiKey}`;
 
         return axios.get(apiNewsUrl).then((response: AxiosResponse<ApiNewsResponse>) => {
             const article: Article = _.sample(response.data.articles);

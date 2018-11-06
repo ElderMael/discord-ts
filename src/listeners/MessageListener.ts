@@ -14,10 +14,13 @@ interface MessageListener {
 
 export default MessageListener;
 
+const polygonApiKey = process.env.NEWS_API_KEY;
+const memeGeneratorApiKey = process.env.MEME_GENERATOR_API_KEY.trim();
+
 const listeners = [
     new PingMessageListener(),
-    new ApiNewsMessageListener(),
-    new MemeGeneratorMessageListener(),
+    new ApiNewsMessageListener(polygonApiKey),
+    new MemeGeneratorMessageListener(memeGeneratorApiKey),
     new ClearMessageListener(),
     new AddRoleMessageListener(),
 ] as MessageListener[];
