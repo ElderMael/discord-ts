@@ -1,5 +1,5 @@
-import {Client as DiscordClient} from "discord.js";
 import * as _ from "lodash";
+import {Client as DiscordClient} from "discord.js";
 import {processMessage} from "./processMessage";
 
 
@@ -13,5 +13,5 @@ client
         const on = client.on.bind(client) as (type: string, callback: (event: any) => any) => any;
 
         _.curry(on)("message")(processMessage);
-        console.log("ElderBot started.")
+        console.log("ElderBot started.");
     });

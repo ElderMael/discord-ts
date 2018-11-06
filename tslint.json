@@ -6,7 +6,11 @@
   "jsRules": {},
   "rules": {
     "no-console": false,
-    "interface-name": false
+    "interface-name": false,
+    "semicolon": [
+      true,
+      "always"
+    ]
   },
   "rulesDirectory": []
 }
